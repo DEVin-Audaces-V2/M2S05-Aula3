@@ -13,9 +13,21 @@ using Excecoes.CustomExceptions;
 
 // calculadora.Soma(1,2);
 
-var usuario = "Vitor";
-var usuarioValido = false;
-if(!usuarioValido ){
-  throw new UsuarioInvalidoException($"O Usuario {usuario} não é válido ");
+try{
+  //throw new Exception("Aconteceu um erro");
+  var usuario = "Vitor";
+  var usuarioValido = false;
+  if(!usuarioValido ){
+    throw new UsuarioInvalidoException($"O Usuario {usuario} não é válido ",usuario);
+  }
 }
-
+catch(UsuarioInvalidoException ex){
+  Console.WriteLine("Aconteceu uma tragedia"+ ex.Message);
+  Console.WriteLine ("O usuario Causador: "+ ex.UsuarioNome);
+}
+catch(Exception ex){
+  Console.WriteLine("Aconteceu uma tragedia pior "+ ex.Message);
+}
+finally{
+  Console.WriteLine("Bloco do Finally");
+}
